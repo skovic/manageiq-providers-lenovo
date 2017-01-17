@@ -12,19 +12,18 @@ module ManageIQ::Providers::Lenovo::PhysicalInfraManager::Operations
   private
 
   def change_resource_state(verb, args, options = {})
-    $lenovo_log.info("Entering change resource state for #{ verb } and uuid: #{args.uuid} ")
+    $lenovo_log.info("Entering change resource state for #{verb} and uuid: #{args.uuid} ")
 
     # Connect to the LXCA instance
     auth = authentications.first
     endpoint = endpoints.first
-    client = connect({:user => auth.userid,
-                      :pass => auth.password,
-                      :host => endpoint.hostname})
+    client = connect(:user => auth.userid,
+                     :pass => auth.password,
+                     :host => endpoint.hostname)
 
     # Turn on the location LED using the xclarity_client API
     client.send(verb, options[:uuid])
 
-    $lenovo_log.info("Exiting change resource state for #{ verb } and uuid: #{args.uuid}")
-  end  
-
+    $lenovo_log.info("Exiting change resource state for #{verb} and uuid: #{args.uuid}")
+  end
 end

@@ -1,6 +1,5 @@
 class ManageIQ::Providers::Lenovo::PhysicalInfraManager < ManageIQ::Providers::InfraManager
-
-  has_many :physical_servers, foreign_key: "ems_id", class_name: "ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer"
+  has_many :physical_servers, :foreign_key => "ems_id", :class_name => "ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer"
 
   include ManageIQ::Providers::Lenovo::ManagerMixin
   include_concern 'Operations'
@@ -18,5 +17,4 @@ class ManageIQ::Providers::Lenovo::PhysicalInfraManager < ManageIQ::Providers::I
   def self.description
     @description ||= "Lenovo XClarity"
   end
-
 end
