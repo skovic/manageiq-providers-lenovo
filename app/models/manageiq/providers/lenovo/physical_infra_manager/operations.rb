@@ -1,6 +1,10 @@
 module ManageIQ::Providers::Lenovo::PhysicalInfraManager::Operations
   extend ActiveSupport::Concern
 
+  def blink_loc_led(server, options = {})
+    change_resource_state(:blink_loc_led, server, options)
+  end
+
   def turn_on_loc_led(server, options = {})
     change_resource_state(:turn_on_loc_led, server, options)
   end
