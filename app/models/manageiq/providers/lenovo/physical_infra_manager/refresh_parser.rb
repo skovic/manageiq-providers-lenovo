@@ -78,21 +78,22 @@ module ManageIQ::Providers::Lenovo
     def parse_nodes(node)
       # physical_server = ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer.new(node)
       new_result = {
-        :type    => ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer.name,
-        :name    => node.name,
-        :ems_ref => @ems.uid_ems,
-        :uid_ems => @ems.uid_ems,
-        :hostname => node.hostname,
-        :productName => node.productName,
-        :manufacturer => node.manufacturer,
-        :machineType => node.machineType,
-        :model  => node.model,
-        :serialNumber => node.serialNumber,
-        :uuid =>  node.uuid,
-        :FRU  =>  node.FRU,
-        :macAddresses => node.macAddress.split(",").flatten,
-        :ipv4Addresses => node.ipv4Addresses.split.flatten,
-        :ipv6Addresses => node.ipv6Addresses.split.flatten
+        :type           => ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer.name,
+        :name           => node.name,
+        :ems_ref        => @ems.uid_ems,
+        :uid_ems        => @ems.uid_ems,
+        :hostname       => node.hostname,
+        :productName    => node.productName,
+        :manufacturer   => node.manufacturer,
+        :machineType    => node.machineType,
+        :model          => node.model,
+        :serialNumber   => node.serialNumber,
+        :uuid           => node.uuid,
+        :FRU            => node.FRU,
+        :macAddresses   => node.macAddress.split(",").flatten,
+        :ipv4Addresses  => node.ipv4Addresses.split.flatten,
+        :ipv6Addresses  => node.ipv6Addresses.split.flatten,
+        :healthState   => node.cmmHealthState
       }
       return node.uuid, new_result
     end
