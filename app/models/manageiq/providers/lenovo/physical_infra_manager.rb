@@ -11,7 +11,7 @@ class ManageIQ::Providers::Lenovo::PhysicalInfraManager < ManageIQ::Providers::P
   require_nested :RefreshWorker
 
   def self.ems_type
-    @ems_type ||= "lenovo_ph_infra".freeze
+    @ems_type ||= "lenovo".freeze
   end
 
   def self.description
