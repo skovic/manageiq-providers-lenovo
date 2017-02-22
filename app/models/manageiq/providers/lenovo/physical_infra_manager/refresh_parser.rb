@@ -99,7 +99,7 @@ module ManageIQ::Providers::Lenovo
       new_result = {
         :type           => ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer.name,
         :name           => node.name,
-        :ems_ref        => @ems.uid_ems,
+        :ems_ref        => node.uuid,
         :uid_ems        => @ems.uid_ems,
         :hostname       => node.hostname,
         :productName    => node.productName,
