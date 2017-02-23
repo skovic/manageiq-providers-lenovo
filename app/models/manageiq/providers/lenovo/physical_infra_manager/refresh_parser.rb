@@ -113,7 +113,7 @@ module ManageIQ::Providers::Lenovo
         :ipv4Addresses  => node.ipv4Addresses.split.flatten,
         :ipv6Addresses  => node.ipv6Addresses.split.flatten,
         :healthState    => HEALTH_STATE[node.cmmHealthState.downcase],
-        :powerState     => POWER_STATE_MAP[node.powerStatus.downcase],
+        :powerState     => POWER_STATE_MAP[node.powerStatus],
         :vendor         => "lenovo"
       }
       return node.uuid, new_result
