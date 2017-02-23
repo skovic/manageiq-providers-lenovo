@@ -40,10 +40,17 @@ module ManageIQ::Providers::Lenovo
 
       $log.info("#{log_header}...")
 
-      get_physical_servers
-
+      auth = @ems.authentications.first
+    
+      auth.status = "None"
+      begin
+        get_physical_servers
+        auth.status = "Valid"
+      rescue
+        auth.status = "Invalid"
+      end
       $log.info("#{log_header}...Complete")
-
+      auth.save!
       @data
     end
 
