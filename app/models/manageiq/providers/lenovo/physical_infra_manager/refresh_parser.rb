@@ -103,6 +103,7 @@ module ManageIQ::Providers::Lenovo
 
     def parse_nodes(node)
       # physical_server = ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer.new(node)
+
       new_result = {
         :type           => ManageIQ::Providers::Lenovo::PhysicalInfraManager::PhysicalServer.name,
         :name           => node.name,
@@ -121,7 +122,8 @@ module ManageIQ::Providers::Lenovo
         :ipv6Addresses  => node.ipv6Addresses.split.flatten,
         :healthState    => HEALTH_STATE[node.cmmHealthState.downcase],
         :powerState     => POWER_STATE_MAP[node.powerStatus],
-        :vendor         => "lenovo"
+        :vendor         => "lenovo",
+        :locLedState    => find_loc_led_state(node.leds)
       }
       return node.uuid, new_result
     end
@@ -130,5 +132,17 @@ module ManageIQ::Providers::Lenovo
       "ManageIQ::Providers::Lenovo::PhysicalInfraManager::Template"
     end
 
+    def find_loc_led_state(leds)
+      loc_led_state = ""
+
+      leds.each do |led|
+        if led["name"] == "Identify"
+          loc_led_state = led["state"]
+          break
+        end
+      end
+
+      loc_led_state
+    end
   end
 end
