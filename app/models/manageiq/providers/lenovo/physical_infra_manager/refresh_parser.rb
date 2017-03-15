@@ -118,7 +118,7 @@ module ManageIQ::Providers::Lenovo
         :health_state   => HEALTH_STATE[node.cmmHealthState.downcase],
         :power_state    => POWER_STATE_MAP[node.powerStatus],
         :vendor         => "lenovo",
-        :locLedState    => find_loc_led_state(node.leds)
+        :loc_led_state  => find_loc_led_state(node.leds)
       }
       return node.uuid, new_result
     end
