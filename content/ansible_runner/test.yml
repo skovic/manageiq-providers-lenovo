@@ -1,0 +1,12 @@
+- name: Dummy Playbook
+  hosts: localhost
+  vars:
+    id: "{{ id }}"
+    name: "{{ name }}"
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Print the Username
+      command: /bin/echo "Printing the Username"
+    - name: Start the VM
+      command: /bin/echo "Starting the VM"
